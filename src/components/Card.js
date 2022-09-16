@@ -1,6 +1,6 @@
 import { Row, Col, Container } from 'react-bootstrap';
 
-function Product(props) {
+function Card(props) {
   // let [shoes] = useState(data);
   return (
     <>
@@ -26,4 +26,4 @@ function Product(props) {
   )
 }
 
-export default Product;
+export default Card;

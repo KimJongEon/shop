@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useState } from 'react';
 import data from './components/Data.js';
-import Product from './components/Product.js';
+import Card from './components/Card.js';
 import Header from './components/Header.js';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
       <Header></Header>
 
       {/* 상품 소개 및 사진 */}
-      <Product shoes={shoes} ></Product>
+      <Card shoes={shoes} ></Card>
       
 
     </div>
