@@ -1,18 +1,29 @@
-import {Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 
-function Product(props){
-    // let [shoes] = useState(data);
-    return(
-      <>
-        <Row>
-          <Col>
-            <h4>Product.js에서 export한 js 파일</h4>
-            <p>dasd</p>
-            <p>{props.shoes[0].title}</p>
-          </Col>
-        </Row>
-      </>
-    )
-  }
+function Product(props) {
+  // let [shoes] = useState(data);
+  return (
+    <>
+      <div>
+        <Container>
+          <Row>
+            {
+              props.shoes.map(function (shoes, i) {
+                console.log(shoes);
+                return (
+                  <Col key={i} >
+                    <img alt={"신발 사진" + i}  src={process.env.PUBLIC_URL + './img/shoes' + (i+1) + '.jpg'} width="80%"></img>
+                    <h4>{props.shoes[i].title}</h4>
+                    <p>{props.shoes[i].content}</p>
+                  </Col>
+                ); //return End
+              })
+            }
+          </Row>
+        </Container>
+      </div>
+    </>
+  )
+}
 
 export default Product;
