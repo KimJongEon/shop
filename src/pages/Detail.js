@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'; // hook 사용
-
+import styled from 'styled-components';
 
 function Detail(props) {
     let {id} = useParams(); // url에입력한번호 : /detail/숫자
@@ -8,8 +8,17 @@ function Detail(props) {
         // eslint-disable-next-line
         return x.id == id // 조건식 : array자료.id == url에입력한번호 일때 return
     });
-    // console.log(findProduct);
-    // console.log(findProduct.id);
+
+    let Box = styled.div`
+        padding : 2rem;
+        color : grey
+    `;
+
+    let YellowBtn = styled.button`
+        background : yellow;
+        color : black;
+        padding : 1rem;
+    `;
 
     if(findProduct !== undefined) {
         return (
@@ -26,6 +35,12 @@ function Detail(props) {
                             <button className="btn btn-danger">주문하기</button>
                         </div>
                     </div>
+                </div>
+
+                <div>
+                    <Box>
+                        <YellowBtn>버튼ㅇㅇ</YellowBtn>
+                    </Box>
                 </div>
             </>
         ); // return End
