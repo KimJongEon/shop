@@ -25,7 +25,7 @@ function App() {
           <>
             {/* 메인 사진 */}
             <div>
-              <img alt="메인사진" className="main-bg" src={process.env.PUBLIC_URL + './img/bg.png'} ></img>
+              <img alt="메인사진" className="main-bg" src={process.env.PUBLIC_URL + '/img/bg.png'} ></img>
             </div>
 
             {/* 상품 소개 및 사진 */}
@@ -34,11 +34,7 @@ function App() {
         } />
 
         {/* Detail 페이지 */}
-        <Route path="/detail" element={
-          <>
-            <Detail></Detail>
-          </>
-        } />
+        <Route path="/detail/:id" element={ <Detail shoes={shoes} />} />
 
         {/* nested routes 사용 */}
         <Route path="/about" element={<About />}>
@@ -62,11 +58,8 @@ function App() {
 
 
     </div>
-
-
-
-  );
-}
+  ); // return End
+} //App() End
 
 export default App;
 
