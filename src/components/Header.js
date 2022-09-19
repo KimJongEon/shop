@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import '../css/Header.css';
 
-function Header() {
+function Header(props) {
     return (
         <>
             {/* 상단 Header*/}
@@ -10,16 +10,11 @@ function Header() {
                 <Container>
                     <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Cart</Nav.Link>
+                        <Nav.Link onClick={()=>{ props.navigate('/') }}>Home</Nav.Link>
+                        <Nav.Link onClick={()=>{ props.navigate('/detail') }}>Cart</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
-
-            {/* 메인 사진 */}
-            <div>
-                <img alt="메인사진" className="main-bg" src={process.env.PUBLIC_URL + './img/bg.png'} ></img>
-            </div>
         </>
     )
 }
