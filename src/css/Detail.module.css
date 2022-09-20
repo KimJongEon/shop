@@ -1,0 +1,7 @@
+.start{
+    opacity : 0;
+}
+.end {
+    opacity: 1;
+    transition: opacity 0.5s; /* opacity가 변경 될 때 0.5초에 걸쳐서 변경 */
+}

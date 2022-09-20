@@ -1,23 +1,25 @@
 import { useParams } from 'react-router-dom'; // hook 사용
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
+import { Nav } from 'react-bootstrap';
+import detailStyle from '../css/Detail.module.css';
 
 //컴포넌트 밖에 선언해야 함
 //컴포넌트 안에 선언 시 경고, 혹은 오류 발생
-let Box = styled.div`
-        padding : 2rem;
-        color : grey
-    `;
+// let Box = styled.div`
+//         padding : 2rem;
+//         color : grey
+//     `;
 
-let YellowBtn = styled.button`
-        background : yellow;
-        color : black;
-        padding : 1rem;
-    `;
+// let YellowBtn = styled.button`
+//         background : yellow;
+//         color : black;
+//         padding : 1rem;
+//     `;
 
 function Detail(props) {
     let [discountAlert, setDiscountAlert] = useState(true);
-    
+    let [tab, setTab] = useState(0);
 
     // useEffect 쓰는 이유
     // 실행 시점 : html이 랜더링 다 된 후에 실행됨
@@ -43,7 +45,7 @@ function Detail(props) {
 
     useEffect(() => {
         let interval = setTimeout(() => { setDiscountAlert(false) }, 2000)
-        
+
         if (isNaN(inputValue) === true) { // isNaN() 함수 : 매개변수가 숫자가 아니면 true를 반환
             console.log('숫자를 입력해주세요')
         }
@@ -88,12 +90,28 @@ function Detail(props) {
                     </div>
                 </div>
 
+                {/* 상품 탭 구분, 내용 추가 */}
+                <Nav variant="tabs" defaultActiveKey="link0">
+                    <Nav.Item>
+                        <Nav.Link eventKey="link0" onClick={() => { setTab(0) }} >버튼0</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="link1" onClick={() => { setTab(1) }} >버튼1</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="link2" onClick={() => { setTab(2) }} >버튼2</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+                <TabContent tab={tab} />
 
-                <div>
+
+
+                {/* <div>
                     <Box>
+                        <p>아무 의미없음</p>
                         <YellowBtn>버튼</YellowBtn>
                     </Box>
-                </div>
+                </div> */}
             </>
         ); // return End
     }
@@ -107,5 +125,33 @@ function Detail(props) {
     }
 
 } // Detail() End
+
+function TabContent({ tab }) { // 축약 버전 : props. 대신 props이름을 사용, 여러개 있으면 , 찍고 추가
+    let [fade, setFade] = useState('')
+
+    useEffect(()=>{
+        setTimeout(()=>{setFade(detailStyle.end)}, 150)
+        
+        return(()=>{
+            setFade('')
+        })
+    }, [tab])
+    
+    return (
+        <div className={`${detailStyle.start} ${fade}`}>
+            {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
+        </div>
+    )
+    // if (props.tab === 0) {
+    //     return <div>내용0</div>
+    // }
+    // if (props.tab === 1) {
+    //     return <div>내용1</div>
+    // }
+    // if (props.tab === 2) {
+    //     return <div>내용2</div>
+    // }
+}
+
 
 export default Detail;
