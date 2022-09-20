@@ -18,14 +18,15 @@ let YellowBtn = styled.button`
 function Detail(props) {
     let [discountAlert, setDiscountAlert] = useState(true);
     
+
     // useEffect 쓰는 이유
     // 실행 시점 : html이 랜더링 다 된 후에 실행됨
     // 사용 되는 곳 예시 : 어려운 연산, 서버에서 데이터 가져오는 작업, 타이머 장착
     // useEffect(() => { // hook
     //     let interval = setTimeout(() => { setDiscountAlert(false) }, 2000)
     //     return () => { clearTimeout(interval) } // useEffect가 실행되기전에 실행 됨, clearTimeout : 타이머제거 함수
-    
-    
+
+
     // }); // [] 추가시 mount 될 때 한 번만 실행
 
     // useEffect 정리
@@ -37,14 +38,17 @@ function Detail(props) {
 
     //     }
     // }, [])
- 
+
     let [inputValue, setInputValue] = useState(0);
-    
-    useEffect(()=>{
-        if (isNaN(inputValue) == true){ // isNaN() 함수 : 매개변수가 숫자가 아니면 true를 반환
+
+    useEffect(() => {
+        let interval = setTimeout(() => { setDiscountAlert(false) }, 2000)
+        
+        if (isNaN(inputValue) === true) { // isNaN() 함수 : 매개변수가 숫자가 아니면 true를 반환
             console.log('숫자를 입력해주세요')
         }
-        
+        return () => { clearTimeout(interval) } // useEffect가 실행되기전에 실행 됨, clearTimeout : 타이머제거 함수
+
     }, [inputValue]);
 
 
@@ -60,7 +64,7 @@ function Detail(props) {
             <>
                 <div className="container">
                     {
-                        discountAlert == true ?
+                        discountAlert === true ?
 
                             <div className="alert alert-warning">
                                 2초이내 구매시 할인
@@ -73,8 +77,8 @@ function Detail(props) {
                             <img alt="상품 사진 없음" src={process.env.PUBLIC_URL + '/img/shoes' + findProduct.id + '.jpg'} width="100%" />
                         </div>
                         <div className="col-md-6">
-                            
-                             <input onChange={(e)=>{ setInputValue(e.target.value) }} />
+
+                            <input onChange={(e) => { setInputValue(e.target.value) }} />
 
                             <h4 className="pt-5">{findProduct.title}</h4>
                             <p>{findProduct.content}</p>
@@ -83,8 +87,8 @@ function Detail(props) {
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div>
                     <Box>
                         <YellowBtn>버튼</YellowBtn>

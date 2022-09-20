@@ -9,12 +9,15 @@ import About from './pages/About.js';
 import Event from './pages/Event.js';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
+
 function App() {
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
+  let [buttonNum, setButtonNum] = useState(0);
 
   return (
     <div className="App">
+      
       {/* 고정 : 상단 헤더 */}
       <Header navigate={navigate} ></Header>
 
@@ -29,7 +32,7 @@ function App() {
             </div>
 
             {/* 상품 소개 및 사진 */}
-            <Card shoes={shoes} ></Card>
+            <Card shoes={shoes} setShoes={setShoes} buttonNum={buttonNum} setButtonNum={setButtonNum} ></Card>
           </>
         } />
 
