@@ -64,7 +64,7 @@ function Detail(props) {
 
     // Detail 페이지 로드시 투명도 0 -> 1 애니메이션 적용
     useEffect(() => {
-        setTimeout(() => { setDetailFade(detailStyle.end) }, 150)
+        setDetailFade(detailStyle.end)
 
         return (() => {
             setDetailFade('')
@@ -74,58 +74,57 @@ function Detail(props) {
     if (findProduct !== undefined) {
         return (
             <>
-                <div className={`${detailStyle.start} ${detailFade}`} >
+                {/* Detail 페이지 로드시 투명도 0 -> 1 애니메이션 적용 */}
+                <div className={`container ${detailStyle.start} ${detailFade}`}>
+                    {
+                        discountAlert === true ?
 
-                    <div className="container">
-                        {
-                            discountAlert === true ?
-
-                                <div className="alert alert-warning">
-                                    2초이내 구매시 할인
-                                </div>
-
-                                : null
-                        }
-                        <div className="row">
-                            <div className="col-md-6">
-                                <img alt="상품 사진 없음" src={process.env.PUBLIC_URL + '/img/shoes' + findProduct.id + '.jpg'} width="100%" />
+                            <div className="alert alert-warning">
+                                2초이내 구매시 할인
                             </div>
-                            <div className="col-md-6">
 
-                                <input onChange={(e) => { setInputValue(e.target.value) }} />
+                            : null
+                    }
+                    <div className="row">
+                        <div className="col-md-6">
+                            <img alt="상품 사진 없음" src={process.env.PUBLIC_URL + '/img/shoes' + findProduct.id + '.jpg'} width="100%" />
+                        </div>
+                        <div className="col-md-6">
 
-                                <h4 className="pt-5">{findProduct.title}</h4>
-                                <p>{findProduct.content}</p>
-                                <p>{findProduct.price}원</p>
-                                <button className="btn btn-danger">주문하기</button>
-                            </div>
+                            <input onChange={(e) => { setInputValue(e.target.value) }} />
+
+                            <h4 className="pt-5">{findProduct.title}</h4>
+                            <p>{findProduct.content}</p>
+                            <p>{findProduct.price}원</p>
+                            <button className="btn btn-danger">주문하기</button>
                         </div>
                     </div>
+                </div>
 
-                    {/* 상품 탭 구분, 내용 추가 */}
-                    <Nav variant="tabs" defaultActiveKey="link0">
-                        <Nav.Item>
-                            <Nav.Link eventKey="link0" onClick={() => { setTab(0) }} >버튼0</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="link1" onClick={() => { setTab(1) }} >버튼1</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="link2" onClick={() => { setTab(2) }} >버튼2</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                    <TabContent tab={tab} />
+                {/* 상품 탭 구분, 내용 추가 */}
+                <Nav variant="tabs" defaultActiveKey="link0">
+                    <Nav.Item>
+                        <Nav.Link eventKey="link0" onClick={() => { setTab(0) }} >버튼0</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="link1" onClick={() => { setTab(1) }} >버튼1</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="link2" onClick={() => { setTab(2) }} >버튼2</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+                <TabContent tab={tab} />
 
 
 
-                    {/* <div>
+                {/* <div>
                     <Box>
                         <p>아무 의미없음</p>
                         <YellowBtn>버튼</YellowBtn>
                     </Box>
                 </div> */}
 
-                </div>
+
             </>
         ); // return End
     }
