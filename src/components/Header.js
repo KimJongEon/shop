@@ -11,7 +11,7 @@ function Header(props) {
                     <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
                     <Nav className="me-auto">
                         <Nav.Link onClick={()=>{ props.navigate('/') }}>Home</Nav.Link>
-                        <Nav.Link onClick={()=>{ props.navigate('/detail') }}>Cart</Nav.Link>
+                        <Nav.Link onClick={()=>{ props.navigate('/cart') }}>Cart</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

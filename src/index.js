@@ -4,14 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from "react-redux";
+import store from './components/store.js';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* react-router-dom 사용 : BrowserRouter 선언 */}
-    <BrowserRouter> 
-      <App />
-    </BrowserRouter>
+    <Provider store={store}> {/* react-redux 사용 : Provider 선언 */}
+      <BrowserRouter> {/* react-router-dom 사용 : BrowserRouter 선언 */}
+        <App />
+      </BrowserRouter>
+    </Provider> {/* <App>과 그 모든 자식컴포넌트들은 store.js에 있던 state를 맘대로 꺼내쓸 수 있다. */}
   </React.StrictMode>
 );
 

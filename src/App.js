@@ -7,6 +7,7 @@ import Header from './components/Header.js';
 import Detail from './pages/Detail.js'
 import About from './pages/About.js';
 import Event from './pages/Event.js';
+import Cart from  './pages/Cart.js';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 
@@ -38,6 +39,9 @@ function App() {
 
         {/* Detail 페이지 */}
         <Route path="/detail/:id" element={ <Detail shoes={shoes} />} />
+
+        {/* Cart 페이지 */}
+        <Route path="/cart" element={ <Cart/> } />
 
         {/* nested routes 사용 */}
         <Route path="/about" element={<About />}>
