@@ -1,5 +1,9 @@
+/* eslint-disable */ // 터미널에 경고 메세지 안뜨게 해줌
 import { useParams } from 'react-router-dom'; // hook 사용
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeCartData } from '../components/store.js';
+
 // import styled from 'styled-components';
 import { Nav } from 'react-bootstrap';
 import detailStyle from '../css/Detail.module.css';
@@ -21,6 +25,10 @@ function Detail(props) {
     let [discountAlert, setDiscountAlert] = useState(true);
     let [tab, setTab] = useState(0);
     let [detailFade, setDetailFade] = useState('');
+    let cartData = useSelector((state) => { return state.cartData }) // Cart에 담긴 data가져오기
+    
+    // Redux : store의 state 변경하기 위한 함수 - useDispatch
+    let dispatch = useDispatch()
 
     // useEffect 쓰는 이유
     // 실행 시점 : html이 랜더링 다 된 후에 실행됨
@@ -96,7 +104,12 @@ function Detail(props) {
                             <h4 className="pt-5">{findProduct.title}</h4>
                             <p>{findProduct.content}</p>
                             <p>{findProduct.price}원</p>
-                            <button className="btn btn-danger">주문하기</button>
+                            <button className="btn btn-success">주문하기</button>
+                            <button className="btn btn-primary" onClick={()=>{
+                                
+                                dispatch(changeCartData( {id : findProduct.id, name : findProduct.title, count : 1} ))
+
+                            }} >카트에 담기</button>
                         </div>
                     </div>
                 </div>
